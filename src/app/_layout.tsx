@@ -11,6 +11,7 @@ import {
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
 import Constants from "expo-constants";
+import { CartProvider } from "@/hooks/useCart";
 
 export default function Layout() {
   const heightStatusBar = Constants.statusBarHeight;
@@ -27,14 +28,16 @@ export default function Layout() {
     <GestureHandlerRootView
       style={{ flex: 1, paddingTop: heightStatusBar, overflow: "visible" }}
     >
-      <StatusBar style="light" />
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="list-collections"
-          options={{ headerShown: false, headerBackButtonMenuEnabled: false }}
-        />
-      </Stack>
+      <StatusBar style="auto" />
+      <CartProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="list-collections"
+            options={{ headerShown: false, headerBackButtonMenuEnabled: false }}
+          />
+        </Stack>
+      </CartProvider>
     </GestureHandlerRootView>
   );
 }

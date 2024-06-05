@@ -2,7 +2,7 @@ import { ItemProductCollection } from "@/components/ItemProductCollection";
 import { productList } from "@/mock";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { FlatList, Pressable, ScrollView, Text, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 export default function ListCollections() {
   const { back } = useRouter();
@@ -14,12 +14,12 @@ export default function ListCollections() {
             Order From The Best OF <Text className="font-medium">Snacks</Text>
           </Text>
 
-          <Pressable
+          <TouchableOpacity
             onPress={() => back()}
             className="border h-[90px] rounded-full p-5 items-center flex justify-center border-gray-500"
           >
             <MaterialIcons name="west" size={30} />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
       <View className="mx-6 gap-2 pb-8 flex-1">

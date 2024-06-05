@@ -1,25 +1,26 @@
+import { ProductListProps } from "@/@types/cart";
+import { useCart } from "@/hooks/useCart";
 import { MaterialIcons } from "@expo/vector-icons";
 import clsx from "clsx";
-import { Image, Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 
-interface ItemProduct {
-  image: string;
-  name: string;
-  id: number;
-  color: string;
-  price: number;
+type ItemProduct = ProductListProps & {
   position: number;
   length: number;
-}
+};
 
 const ItemProductComponent = ({
   position,
   length,
   name,
   color,
+  id,
   price,
+  category,
   image,
 }: ItemProduct) => {
+  const { addProductCart } = useCart();
+
   return (
     <View
       className={clsx(
@@ -43,16 +44,23 @@ const ItemProductComponent = ({
         </Text>
         <View className="flex felx-row w-min items-start pt-8">
           <View className=" overflow-hidden rounded-full">
-            <Text className="bg-gray-100 px-4 py-2 ">Choco</Text>
+            <Text className="bg-[#ffffffa3] px-4 py-2 text-gray-600 ">
+              {category}
+            </Text>
           </View>
         </View>
       </View>
 
-      <View className="bg-gray-50 justify-between rounded-full py-4 px-6 flex-row relative">
+      <View className="bg-[#ffffffcf] justify-between rounded-full py-4 px-6 flex-row relative">
         <Text className="text-2xl font-bold">$ {price}</Text>
-        <Pressable className="bg-black py-4 px-6 rounded-full absolute top-0 right-0 bottom-0 my-1">
+        <TouchableOpacity
+          onPress={() =>
+            addProductCart({ name, color, id, price, image, category })
+          }
+          className="bg-black py-4 px-6 rounded-full absolute top-0 right-0 bottom-0 my-1"
+        >
           <MaterialIcons name="shopping-basket" color={"#fff"} size={20} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

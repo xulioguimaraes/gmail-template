@@ -23,10 +23,13 @@ const ItemFilterComponent: React.FC<ItemFilterProps> = ({
 }) => {
   return (
     <Pressable
-      className={clsx("py-4 px-5 flex flex-row gap-2  mr-4 rounded-full items-center", {
-        "bg-yellow-400": !!active,
-        "bg-[#f4f4f4]": !active,
-      })}
+      className={clsx(
+        "py-4 px-5 flex flex-row gap-2  mr-4 rounded-full items-center",
+        {
+          "bg-yellow-400": !!active,
+          "bg-[#f4f4f4]": !active,
+        }
+      )}
       onPress={() => onPressable(id)}
     >
       {icon}
