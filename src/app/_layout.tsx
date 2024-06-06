@@ -12,6 +12,8 @@ import {
 } from "@expo-google-fonts/roboto";
 import Constants from "expo-constants";
 import { CartProvider } from "@/hooks/useCart";
+import { PreviewCart } from "@/components/PreviewCart";
+import { ProductAppProvider } from "@/hooks/useProductsApp";
 
 export default function Layout() {
   const heightStatusBar = Constants.statusBarHeight;
@@ -29,15 +31,26 @@ export default function Layout() {
       style={{ flex: 1, paddingTop: heightStatusBar, overflow: "visible" }}
     >
       <StatusBar style="auto" />
-      <CartProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="list-collections"
-            options={{ headerShown: false, headerBackButtonMenuEnabled: false }}
-          />
-        </Stack>
-      </CartProvider>
+      <ProductAppProvider>
+        <CartProvider>
+          <Stack>
+            <Stack.Screen
+              name="product/[id]"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="cart" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="list-collections"
+              options={{
+                headerShown: false,
+                headerBackButtonMenuEnabled: false,
+              }}
+            />
+          </Stack>
+          <PreviewCart />
+        </CartProvider>
+      </ProductAppProvider>
     </GestureHandlerRootView>
   );
 }

@@ -1,11 +1,13 @@
-import { ItemProductCollection } from "@/components/ItemProductCollection";
-import { productList } from "@/mock";
+import { ItemProductCollection } from "@/components/ListCollections/ItemProductCollection";
+import { useProductApp } from "@/hooks/useProductsApp";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 export default function ListCollections() {
   const { back } = useRouter();
+  const { dataProductApp } = useProductApp();
+
   return (
     <View className="bg-white h-screen">
       <View className="pt-11">
@@ -24,7 +26,7 @@ export default function ListCollections() {
       </View>
       <View className="mx-6 gap-2 pb-8 flex-1">
         <FlatList
-          data={productList}
+          data={dataProductApp}
           keyExtractor={(item) => String(item.id)}
           numColumns={2}
           columnWrapperStyle={{
@@ -36,10 +38,11 @@ export default function ListCollections() {
               <ItemProductCollection
                 {...item}
                 position={index}
-                length={productList.length - 1}
+                length={dataProductApp.length - 1}
               />
             </View>
           )}
+          ListFooterComponent={() => <View className="p-16" />}
           showsVerticalScrollIndicator={false}
         />
       </View>
