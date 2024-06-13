@@ -1,7 +1,7 @@
 import "@/styles/global.css";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Slot, Stack } from "expo-router";
+import { Slot, Stack, usePathname } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
 import {
@@ -17,6 +17,8 @@ import { ProductAppProvider } from "@/hooks/useProductsApp";
 
 export default function Layout() {
   const heightStatusBar = Constants.statusBarHeight;
+  const pathname = usePathname();
+
   const [fontsLoader] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -28,7 +30,11 @@ export default function Layout() {
   }
   return (
     <GestureHandlerRootView
-      style={{ flex: 1, paddingTop: heightStatusBar, overflow: "visible" }}
+      style={{
+        flex: 1,
+        paddingTop: pathname === "/" ? 0 : heightStatusBar,
+        overflow: "visible",
+      }}
     >
       <StatusBar style="auto" />
       <ProductAppProvider>
@@ -38,6 +44,7 @@ export default function Layout() {
               name="product/[id]"
               options={{ headerShown: false }}
             />
+            <Stack.Screen name="home" options={{ headerShown: false }} />
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="cart" options={{ headerShown: false }} />
             <Stack.Screen

@@ -36,7 +36,7 @@ export const productList = [
     category: "Chips",
     image:
       "https://www.pranfoods.net/sites/default/files/750-750_0000_twister-chips-tomato-paprica-flavour-25gm-size-3.png",
-    color: "#ffe5e4",
+    color: "#ffcdca",
     price: 34,
   },
   {
