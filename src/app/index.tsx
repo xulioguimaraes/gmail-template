@@ -93,7 +93,7 @@ export default function GetStarted() {
   return (
     <View
       style={{ backgroundColor: `${color}`, paddingTop: heightStatusBar }}
-      className="flex-1 relative"
+      className="flex-1 relative transition-colors"
     >
       <View className=" mt-11 px-8 flex flex-row justify-between items-center mb-4 ">
         <Text className="text-[62px] font-bold ">

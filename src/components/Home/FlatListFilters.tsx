@@ -2,12 +2,10 @@ import { buttonsFilters } from "@/mock";
 import { FlatList, View } from "react-native";
 import { ItemFilter } from "./ItemFilter";
 import { useState } from "react";
+import { useFilterHome } from "@/hooks/useFilterHome";
 
 export const FlatListFilters = () => {
-  const [filterSelect, setFilterSelect] = useState<string>("all");
-  const onPressableSelectFilter = (id: string) => {
-    setFilterSelect(id);
-  };
+  const { filterSelect, onPressableSelectFilter } = useFilterHome();
   return (
     <View className="pl-8">
       <FlatList

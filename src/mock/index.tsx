@@ -1,14 +1,37 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { Image } from "react-native";
 
 export const buttonsFilters = [
   { id: "all", name: "All", icon: null },
-  { id: "choco", name: "Choco", icon: <MaterialIcons name="face" size={20} /> },
   {
-    id: "wafles",
-    name: "Wafles",
-    icon: <MaterialIcons name="face" size={20} />,
+    id: "choco",
+    name: "Choco",
+    icon: (
+      <Image
+        source={require("@/assets/chocolate.png")}
+        className="w-[24px] h-[24px]"
+      />
+    ),
   },
-  { id: "chips", name: "Chips", icon: <MaterialIcons name="face" size={20} /> },
+  {
+    id: "waffles",
+    name: "Waffles",
+    icon: (
+      <Image
+        source={require("@/assets/waffles.png")}
+        className="w-[24px] h-[24px]"
+      />
+    ),
+  },
+  {
+    id: "chips",
+    name: "Chips",
+    icon: (
+      <Image
+        source={require("@/assets/snack.png")}
+        className="w-[24px] h-[24px]"
+      />
+    ),
+  },
 ];
 
 export const productList = [
