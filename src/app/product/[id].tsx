@@ -1,4 +1,5 @@
 import { ProductListProps } from "@/@types/cart";
+import { useCart } from "@/hooks/useCart";
 import { useProductApp } from "@/hooks/useProductsApp";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -12,6 +13,7 @@ export default function Product() {
 
   const { back, push } = useRouter();
   const { dataProductApp } = useProductApp();
+  const { addProductCartQuantity } = useCart();
 
   const product =
     dataProductApp.find((item) => item.id === Number(id)) ||
@@ -77,7 +79,7 @@ export default function Product() {
 
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => push("/cart")}
+          onPress={() => addProductCartQuantity(Number(id), quantity)}
           className="bg-[#202020] mx-8 flex-row p-[6px] rounded-[32px] items-center justify-between mt-8"
         >
           <View className="bg-white rounded-[32px] px-8 py-4">

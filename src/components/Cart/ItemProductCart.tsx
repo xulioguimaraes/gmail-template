@@ -34,7 +34,9 @@ export const ItemProductCart = ({ data, quantity }: ItemProductCartProps) => {
         </View>
       </View>
       <View className="rounded-full overflow-hidden">
-        <Text className="text-xl bg-yellow-200 py-4 px-5 ">$ {data.price}</Text>
+        <Text className="text-xl bg-yellow-200 py-4 px-5 ">
+          $ {data.price * quantity}
+        </Text>
       </View>
     </View>
   );

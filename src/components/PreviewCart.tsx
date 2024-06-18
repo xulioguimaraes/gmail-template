@@ -1,4 +1,5 @@
 import { useCart } from "@/hooks/useCart";
+import { getDataRenderGroup } from "@/utils";
 import { Link, usePathname, useRouter } from "expo-router";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 
@@ -7,6 +8,7 @@ export const PreviewCart = () => {
   const { push } = useRouter();
   const pathname = usePathname();
 
+  const dataRender = getDataRenderGroup(dataCart);
   return (
     <>
       {dataCart.length > 0 &&
@@ -17,7 +19,7 @@ export const PreviewCart = () => {
               <View className="flex-row justify-center items-center">
                 <View className="overflow-hidden rounded-full mr-8">
                   <Text className="rounded-full  bg-yellow-400  px-4 py-3 ">
-                    {dataCart.length}
+                    {dataRender.length}
                   </Text>
                 </View>
 
@@ -26,13 +28,13 @@ export const PreviewCart = () => {
                     Cart
                   </Text>
                   <Text className="text-white text-base font-light">
-                    {dataCart.length} item
+                    {dataRender.length} item
                   </Text>
                 </View>
               </View>
               <View className="">
                 <FlatList
-                  data={dataCart}
+                  data={dataRender}
                   keyExtractor={(item) => String(item.id)}
                   numColumns={4}
                   contentContainerClassName="relative"
@@ -48,7 +50,7 @@ export const PreviewCart = () => {
                         className={`w-16 h-16 object-cover bg-white rounded-full ${
                           index === 0 ? "" : "ml-[-24px]"
                         }`}
-                        src={item.image}
+                        src={item.data.image}
                       />
                     );
                   }}
