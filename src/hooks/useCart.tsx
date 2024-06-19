@@ -11,6 +11,7 @@ interface ICartContext {
   addProductCart: (product: ProductListProps) => void;
   dataCart: ProductListProps[];
   addProductCartQuantity: (idProduct: number, quantity: number) => void;
+  removeProductCart: (id: number) => void;
 }
 
 const CartContext = createContext({} as ICartContext);
@@ -30,9 +31,18 @@ const CartProvider = ({ children }: CartProviderProps) => {
       router.push("/cart");
     }
   };
+
+  const removeProductCart = (id: number) => {
+    setDataCart((old) => old.filter((item) => item.id !== id));
+  };
   return (
     <CartContext.Provider
-      value={{ addProductCart, dataCart, addProductCartQuantity }}
+      value={{
+        addProductCart,
+        dataCart,
+        addProductCartQuantity,
+        removeProductCart,
+      }}
     >
       {children}
     </CartContext.Provider>

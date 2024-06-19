@@ -8,8 +8,13 @@ interface ItemProductCartProps {
   data: ProductListProps;
   id: string;
   quantity: number;
+  onRemove: (id: number) => void;
 }
-export const ItemProductCart = ({ data, quantity }: ItemProductCartProps) => {
+export const ItemProductCart = ({
+  data,
+  quantity,
+  onRemove,
+}: ItemProductCartProps) => {
   return (
     <View className="justify-between flex-row px-8 items-center">
       <View className="flex-row justify-center items-center">
@@ -25,7 +30,10 @@ export const ItemProductCart = ({ data, quantity }: ItemProductCartProps) => {
               Unit {quantity}
             </Text>
           </View>
-          <TouchableOpacity className="flex-row items-center ">
+          <TouchableOpacity
+            onPress={() => onRemove(data.id)}
+            className="flex-row items-center "
+          >
             <MaterialIcons name="delete" size={12} color={colors.red[500]} />
             <Text className="text-xs my-2 text-red-500 font-semibold">
               Remove
